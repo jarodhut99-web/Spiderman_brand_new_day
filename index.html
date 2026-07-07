@@ -21,10 +21,10 @@
       font-family: 'Quicksand', sans-serif;
       overflow: hidden;
       position: relative;
-      background-color: #0b1528; /* Mantiene un fondo oscuro elegante en los bordes vacíos */
+      background-color: #050b14; /* Fondo oscuro profundo */
     }
 
-    /* --- Contenedor de la imagen ajustado para mostrarse 100% completa --- */
+    /* --- Imagen de fondo (Póster completo) --- */
     .sky-background {
       position: absolute;
       top: 0;
@@ -32,13 +32,13 @@
       width: 100%;
       height: 100%;
       background-image: url('spiderman1.jpg'); 
-      background-size: contain; /* Cambiado a contain para que NUNCA se recorte la imagen */
+      background-size: contain; 
       background-position: center;
       background-repeat: no-repeat;
       z-index: 1;
     }
 
-    /* Capa oscura para rescatar la lectura de las letras */
+    /* Capa de desenfoque oscuro sobre el póster para resaltar la tarjeta */
     .sky-background::before {
       content: '';
       position: absolute;
@@ -46,7 +46,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.25); 
+      background: rgba(5, 11, 20, 0.4); 
+      backdrop-filter: blur(4px); /* Difumina suavemente el fondo al abrir la tarjeta */
       z-index: 2;
     }
 
@@ -57,7 +58,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: #0b1528;
+      background: #050b14;
       z-index: 999;
       display: flex;
       flex-direction: column;
@@ -96,43 +97,68 @@
       100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(229, 27, 36, 0); }
     }
 
-    /* --- Textos alineados arriba en el espacio libre del cielo --- */
-    .invitation-container {
-      position: relative;
-      z-index: 10;
+    /* --- NUEVA TARJETA TEMÁTICA SPIDER-MAN --- */
+    .card {
+      background: rgba(11, 21, 40, 0.92); /* Azul cómic muy oscuro semi-transparente */
+      border: 5px solid #e51b24; /* Borde rojo arácnido */
+      outline: 3px solid #1e3a8a; /* Contorno azul secundario */
+      padding: 40px 30px;
+      border-radius: 25px;
       text-align: center;
-      width: 90%;
-      max-width: 500px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      width: 88%;
+      max-width: 420px;
+      z-index: 10;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(229, 27, 36, 0.2);
+      position: relative;
       opacity: 0;
       transform: scale(0.8);
       transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease;
-      margin-bottom: 60vh; /* Subido más arriba para liberar la cara del personaje */
     }
 
-    .invitation-container.show {
+    .card.show {
       opacity: 1;
       transform: scale(1);
+    }
+
+    /* Medallón de Telaraña arriba de la tarjeta */
+    .spidey-badge {
+      position: absolute;
+      top: -24px;
+      left: calc(50% - 25px);
+      background: #e51b24;
+      font-size: 26px;
+      width: 50px;
+      height: 50px;
+      line-height: 44px;
+      border-radius: 50%;
+      border: 3px solid #1e3a8a;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     }
 
     .titulo {
       font-family: 'Fredoka', cursive;
       color: #ffffff;
-      font-size: 2.2rem;
-      line-height: 1.4;
-      margin: 0;
-      text-shadow: 3px 3px 10px rgba(0, 0, 0, 1), 0 0 20px #e51b24;
+      font-size: 1.8rem;
+      line-height: 1.3;
+      margin-top: 5px;
+    }
+
+    /* Estilo de letras de cómic con relieve en 3D */
+    .spidey-style {
+      display: block;
+      font-size: 2.3rem;
+      color: #e51b24; 
+      text-shadow: 3px 3px 0px #1e3a8a, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000;
+      transform: rotate(-1.5deg);
+      margin: 15px 0;
     }
 
     .subtitulo {
-      color: #fecb05;
-      font-size: 1.3rem;
-      margin: 10px 0 20px 0;
+      color: #fecb05; /* Amarillo de advertencia de cómic */
+      font-size: 1.15rem;
+      margin: 20px 0;
       font-weight: bold;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
     }
 
     .buttons-container {
@@ -142,17 +168,16 @@
       gap: 20px;
       height: 80px;
       position: relative;
-      width: 100%;
     }
 
     button {
       font-family: 'Fredoka', cursive;
-      padding: 15px 35px;
-      font-size: 1.3rem;
+      padding: 14px 28px;
+      font-size: 1.2rem;
       border: none;
       border-radius: 15px;
       cursor: pointer;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+      box-shadow: 0 6px 0px rgba(0,0,0,0.3);
       transition: transform 0.2s ease, opacity 0.2s ease;
       text-decoration: none;
     }
@@ -179,6 +204,7 @@
 </head>
 <body>
 
+  <!-- PANTALLA RECIBIDORA PARA DESBLOQUEAR EL AUDIO -->
   <div class="audio-unlocker" id="bloqueo-audio" onclick="entrarInvitacion()">
     <button class="unlock-btn">🕷️</button>
     <div class="unlock-text">Tienes una invitación especial...<br>¡Toca para abrir!</div>
@@ -186,12 +212,14 @@
 
   <div class="sky-background"></div>
 
-  <div class="invitation-container" id="tarjeta-invitacion">
-    <h1 class="titulo">¿Vamos al cine?</h1>
+  <!-- Nueva Tarjeta Arácnida Contenedora -->
+  <div class="card" id="tarjeta-invitacion">
+    <div class="spidey-badge">🕸️</div>
+    <h1 class="titulo">¿Quieres ir a ver <span class="spidey-style">Spider-Man</span> el cine conmigo?</h1>
     <p class="subtitulo">¡Un gran poder conlleva una gran salida!</p>
     
     <div class="buttons-container">
-      <button id="btn-si" onclick="abrirWhatsApp()">¡SÍ, CLARO! 🕸️</button>
+      <button id="btn-si" onclick="abrirWhatsApp()">¡SÍ, CLARO! 🕷️</button>
       <button id="btn-no">No 😢</button>
     </div>
   </div>
