@@ -17,7 +17,7 @@
       height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: flex-end; /* 👈 BAJA TODO EL TEXTO AL ÁREA DEL TANQUE OSCURO */
+      align-items: flex-end; 
       font-family: 'Quicksand', sans-serif;
       overflow: hidden;
       position: relative;
@@ -31,22 +31,22 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url('spiderman2.jpg'); /* 👈 Nombre de tu nueva imagen */
+      background-image: url('spiderman2.jpg'); 
       background-size: contain; 
       background-position: center;
       background-repeat: no-repeat;
       z-index: 1;
     }
 
-    /* Un sutil degradado oscuro abajo para que las letras blancas resalten sobre el metal */
+    /* Degradado oscuro abajo expandido para cubrir la nueva altura del texto */
     .sky-background::before {
       content: '';
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 35%;
-      background: linear-gradient(to top, rgba(10, 12, 16, 0.8) 0%, rgba(10, 12, 16, 0) 100%); 
+      height: 45%; /* 👈 Subido un 10% más para proteger la lectura de las letras elevadas */
+      background: linear-gradient(to top, rgba(10, 12, 16, 0.85) 0%, rgba(10, 12, 16, 0) 100%); 
       z-index: 2;
     }
 
@@ -96,7 +96,7 @@
       100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(229, 27, 36, 0); }
     }
 
-    /* --- CONTENEDOR INVISIBLE EN LA BASE --- */
+    /* --- CONTENEDOR INVISIBLE ELEVADO --- */
     .invitation-container {
       position: relative;
       z-index: 10;
@@ -110,7 +110,7 @@
       opacity: 0;
       transform: translateY(30px);
       transition: transform 0.6s ease-out, opacity 0.5s ease;
-      margin-bottom: 3vh; /* Separa los botones ligeramente del borde del teléfono */
+      margin-bottom: 12vh; /* 👈 AQUÍ SUBÍ EL TEXTO LOS 3 CENTÍMETROS PEDIDOS (Antes era 3vh) */
     }
 
     .invitation-container.show {
@@ -186,7 +186,6 @@
 
   <div class="sky-background"></div>
 
-  <!-- Letras acopladas abajo en la zona oscura del vehículo -->
   <div class="invitation-container" id="tarjeta-invitacion">
     <h1 class="titulo">¿Quieres ir al cine conmigo?</h1>
     <p class="subtitulo">¡Un gran poder conlleva una gran salida! 🕸️</p>
@@ -216,7 +215,7 @@
         
         musica.play()
           .then(() => { musicaIniciada = true; })
-          .catch((e) => console.log("Audio bloqueado:", e));
+          .catch((e) => console.log("Audio blocked:", e));
       }
 
       pantallaBloqueo.style.opacity = "0";
@@ -225,7 +224,6 @@
     }
 
     function moverBotonNo() {
-      // El botón evade saltando hacia arriba y hacia los lados para no chocar con los bordes de la pantalla
       const randomX = Math.floor(Math.random() * 100) + 40; 
       const randomY = Math.floor(Math.random() * -80) - 20; 
       btnNo.style.transform = `translate(${randomX}px, ${randomY}px)`;
