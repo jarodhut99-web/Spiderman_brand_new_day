@@ -17,14 +17,14 @@
       height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start; /* Alinea el contenido arriba, como en tu ejemplo */
       font-family: 'Quicksand', sans-serif;
       overflow: hidden;
       position: relative;
-      background-color: #050b14; /* Fondo oscuro profundo */
+      background-color: #0b1528;
     }
 
-    /* --- Imagen de fondo (Póster completo) --- */
+    /* --- Imagen de fondo de Spider-Man fija --- */
     .sky-background {
       position: absolute;
       top: 0;
@@ -38,19 +38,6 @@
       z-index: 1;
     }
 
-    /* Capa de desenfoque oscuro sobre el póster para resaltar la tarjeta */
-    .sky-background::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(5, 11, 20, 0.4); 
-      backdrop-filter: blur(4px); /* Difumina suavemente el fondo al abrir la tarjeta */
-      z-index: 2;
-    }
-
     /* --- BOTÓN DE ENTRADA OBLIGATORIO PARA DESBLOQUEAR AUDIO --- */
     .audio-unlocker {
       position: fixed;
@@ -58,7 +45,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: #050b14;
+      background: #0b1528;
       z-index: 999;
       display: flex;
       flex-direction: column;
@@ -97,93 +84,94 @@
       100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(229, 27, 36, 0); }
     }
 
-    /* --- NUEVA TARJETA TEMÁTICA SPIDER-MAN --- */
+    /* --- TARJETA SUPERIOR ESTILO CÓMIC (Inspirada en tu ejemplo) --- */
     .card {
-      background: rgba(11, 21, 40, 0.92); /* Azul cómic muy oscuro semi-transparente */
-      border: 5px solid #e51b24; /* Borde rojo arácnido */
-      outline: 3px solid #1e3a8a; /* Contorno azul secundario */
-      padding: 40px 30px;
-      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.95); /* Tarjeta blanca limpia */
+      padding: 30px 25px 25px 25px;
+      border-radius: 0 0 30px 30px; /* Bordes redondeados solo abajo */
       text-align: center;
-      width: 88%;
-      max-width: 420px;
+      width: 92%;
+      max-width: 440px;
       z-index: 10;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(229, 27, 36, 0.2);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      border: 6px solid #e51b24; /* Borde rojo de Spider-Man */
+      border-top: none; /* Se fusiona con la parte superior de la pantalla */
       position: relative;
       opacity: 0;
-      transform: scale(0.8);
-      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease;
+      transform: translateY(-50px); /* Animación desde arriba */
+      transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease;
     }
 
     .card.show {
       opacity: 1;
-      transform: scale(1);
+      transform: translateY(0);
     }
 
-    /* Medallón de Telaraña arriba de la tarjeta */
+    /* Medallón de Araña en la parte superior central */
     .spidey-badge {
       position: absolute;
-      top: -24px;
+      bottom: -24px; /* Lo ubica justo en el borde inferior central */
       left: calc(50% - 25px);
-      background: #e51b24;
+      background: #1e3a8a;
       font-size: 26px;
       width: 50px;
       height: 50px;
-      line-height: 44px;
+      line-height: 46px;
       border-radius: 50%;
-      border: 3px solid #1e3a8a;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      border: 4px solid #e51b24;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
     }
 
     .titulo {
       font-family: 'Fredoka', cursive;
-      color: #ffffff;
-      font-size: 1.8rem;
+      color: #1e3a8a; /* Azul Spider-Man */
+      font-size: 1.7rem;
       line-height: 1.3;
-      margin-top: 5px;
+      margin: 0 0 10px 0;
     }
 
-    /* Estilo de letras de cómic con relieve en 3D */
+    /* Estilo del texto destacado de Spider-Man */
     .spidey-style {
       display: block;
       font-size: 2.3rem;
-      color: #e51b24; 
-      text-shadow: 3px 3px 0px #1e3a8a, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000;
-      transform: rotate(-1.5deg);
-      margin: 15px 0;
+      color: #e51b24; /* Rojo vibrante */
+      text-shadow: 2px 2px 0px #1e3a8a, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000;
+      transform: rotate(-1deg);
+      margin: 8px 0;
     }
 
     .subtitulo {
-      color: #fecb05; /* Amarillo de advertencia de cómic */
-      font-size: 1.15rem;
-      margin: 20px 0;
+      color: #555555;
+      font-size: 1.05rem;
+      margin: 15px 0;
+      font-style: italic;
       font-weight: bold;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
     }
 
     .buttons-container {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 20px;
-      height: 80px;
+      gap: 15px;
+      height: 70px;
       position: relative;
+      margin-bottom: 10px;
     }
 
     button {
       font-family: 'Fredoka', cursive;
-      padding: 14px 28px;
-      font-size: 1.2rem;
+      padding: 12px 26px;
+      font-size: 1.15rem;
       border: none;
       border-radius: 15px;
       cursor: pointer;
-      box-shadow: 0 6px 0px rgba(0,0,0,0.3);
+      box-shadow: 0 5px 0px rgba(0,0,0,0.15);
       transition: transform 0.2s ease, opacity 0.2s ease;
       text-decoration: none;
     }
 
     #btn-si {
-      background-color: #0284c7; 
+      background-color: #0284c7; /* Azul brillante */
       color: white;
       border: 3px solid #1e3a8a; 
       z-index: 30; 
@@ -191,7 +179,7 @@
     }
 
     #btn-no {
-      background-color: #e51b24; 
+      background-color: #e51b24; /* Rojo */
       color: white;
       border: 3px solid #b11319;
       z-index: 20;
@@ -212,16 +200,17 @@
 
   <div class="sky-background"></div>
 
-  <!-- Nueva Tarjeta Arácnida Contenedora -->
+  <!-- Tarjeta Blanca Adaptada en la parte superior -->
   <div class="card" id="tarjeta-invitacion">
-    <div class="spidey-badge">🕸️</div>
-    <h1 class="titulo">¿Quieres ir a ver <span class="spidey-style">Spider-Man</span> el cine conmigo?</h1>
+    <h1 class="titulo">¿Quieres ir a ver <span class="spidey-style">Spider-Man</span> al cine conmigo?</h1>
     <p class="subtitulo">¡Un gran poder conlleva una gran salida!</p>
     
     <div class="buttons-container">
       <button id="btn-si" onclick="abrirWhatsApp()">¡SÍ, CLARO! 🕷️</button>
       <button id="btn-no">No 😢</button>
     </div>
+    
+    <div class="spidey-badge">🕸️</div>
   </div>
 
   <audio id="musica-spidey" loop preload="auto">
@@ -252,8 +241,9 @@
     }
 
     function moverBotonNo() {
-      const randomX = Math.floor(Math.random() * 120) + 40; 
-      const randomY = Math.floor(Math.random() * 140) - 70; 
+      // Movimiento controlado para que no se salga de la pantalla en la zona superior
+      const randomX = Math.floor(Math.random() * 100) + 40; 
+      const randomY = Math.floor(Math.random() * 80) + 20; /* Obliga a bajar para no salirse arriba */
       btnNo.style.transform = `translate(${randomX}px, ${randomY}px)`;
     }
 
