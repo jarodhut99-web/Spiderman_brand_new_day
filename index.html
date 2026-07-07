@@ -21,10 +21,10 @@
       font-family: 'Quicksand', sans-serif;
       overflow: hidden;
       position: relative;
-      background-color: #0b1528;
+      background-color: #0b1528; /* Mantiene un fondo oscuro elegante en los bordes vacíos */
     }
 
-    /* --- Ajuste de imagen para asegurar compatibilidad total en GitHub --- */
+    /* --- Contenedor de la imagen ajustado para mostrarse 100% completa --- */
     .sky-background {
       position: absolute;
       top: 0;
@@ -32,7 +32,7 @@
       width: 100%;
       height: 100%;
       background-image: url('spiderman1.jpg'); 
-      background-size: cover;
+      background-size: contain; /* Cambiado a contain para que NUNCA se recorte la imagen */
       background-position: center;
       background-repeat: no-repeat;
       z-index: 1;
@@ -46,7 +46,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.35); 
+      background: rgba(0, 0, 0, 0.25); 
       z-index: 2;
     }
 
@@ -96,7 +96,7 @@
       100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(229, 27, 36, 0); }
     }
 
-    /* --- Contenedor transparente reubicado en la parte superior --- */
+    /* --- Textos alineados arriba en el espacio libre del cielo --- */
     .invitation-container {
       position: relative;
       z-index: 10;
@@ -110,7 +110,7 @@
       opacity: 0;
       transform: scale(0.8);
       transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease;
-      margin-bottom: 45vh; /* Empuja los textos hacia ARRIBA para liberar el logo del póster */
+      margin-bottom: 60vh; /* Subido más arriba para liberar la cara del personaje */
     }
 
     .invitation-container.show {
@@ -130,7 +130,7 @@
     .subtitulo {
       color: #fecb05;
       font-size: 1.3rem;
-      margin: 15px 0 25px 0;
+      margin: 10px 0 20px 0;
       font-weight: bold;
       text-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
     }
@@ -179,7 +179,6 @@
 </head>
 <body>
 
-  <!-- PANTALLA RECIBIDORA PARA DESBLOQUEAR EL AUDIO -->
   <div class="audio-unlocker" id="bloqueo-audio" onclick="entrarInvitacion()">
     <button class="unlock-btn">🕷️</button>
     <div class="unlock-text">Tienes una invitación especial...<br>¡Toca para abrir!</div>
@@ -187,7 +186,6 @@
 
   <div class="sky-background"></div>
 
-  <!-- Contenedor flotante centrado hacia arriba -->
   <div class="invitation-container" id="tarjeta-invitacion">
     <h1 class="titulo">¿Vamos al cine?</h1>
     <p class="subtitulo">¡Un gran poder conlleva una gran salida!</p>
