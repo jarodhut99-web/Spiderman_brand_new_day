@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> 🕸️</title>
+  <title>Invitación Especial: Spider-Man 🕸️</title>
   
   <link rel="preconnect" href="https://googleapis.com">
   <link rel="preconnect" href="https://gstatic.com" crossorigin>
@@ -17,36 +17,36 @@
       height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: flex-start; /* Ubica el texto arriba en la zona libre del cielo */
+      align-items: flex-end; /* 👈 BAJA TODO EL TEXTO AL ÁREA DEL TANQUE OSCURO */
       font-family: 'Quicksand', sans-serif;
       overflow: hidden;
       position: relative;
-      background-color: #0b1528;
+      background-color: #12151c;
     }
 
-    /* --- Imagen de fondo de Spider-Man completa --- */
+    /* --- Imagen de fondo de Spider-Man fija --- */
     .sky-background {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url('spiderman2.jpg'); 
+      background-image: url('spiderman2.jpg'); /* 👈 Nombre de tu nueva imagen */
       background-size: contain; 
       background-position: center;
       background-repeat: no-repeat;
       z-index: 1;
     }
 
-    /* Un degradado oscuro sutil solo arriba para que las letras blancas se lean perfectamente */
+    /* Un sutil degradado oscuro abajo para que las letras blancas resalten sobre el metal */
     .sky-background::before {
       content: '';
       position: absolute;
-      top: 0;
+      bottom: 0;
       left: 0;
       width: 100%;
-      height: 40%;
-      background: linear-gradient(to bottom, rgba(11, 21, 40, 0.8) 0%, rgba(11, 21, 40, 0) 100%); 
+      height: 35%;
+      background: linear-gradient(to top, rgba(10, 12, 16, 0.8) 0%, rgba(10, 12, 16, 0) 100%); 
       z-index: 2;
     }
 
@@ -57,7 +57,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: #0b1528;
+      background: #12151c;
       z-index: 999;
       display: flex;
       flex-direction: column;
@@ -96,7 +96,7 @@
       100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(229, 27, 36, 0); }
     }
 
-    /* --- CONTENEDOR TRANSPARENTE SIN TARJETA --- */
+    /* --- CONTENEDOR INVISIBLE EN LA BASE --- */
     .invitation-container {
       position: relative;
       z-index: 10;
@@ -108,9 +108,9 @@
       justify-content: center;
       align-items: center;
       opacity: 0;
-      transform: translateY(-30px);
+      transform: translateY(30px);
       transition: transform 0.6s ease-out, opacity 0.5s ease;
-      margin-top: 4vh; /* Lo pega al borde superior para no tocar la cabeza de Spiderman */
+      margin-bottom: 3vh; /* Separa los botones ligeramente del borde del teléfono */
     }
 
     .invitation-container.show {
@@ -124,15 +124,15 @@
       font-size: 1.9rem;
       line-height: 1.4;
       margin: 0;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9), 0 0 10px rgba(229, 27, 36, 0.6);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 1), 0 0 10px rgba(229, 27, 36, 0.5);
     }
 
     .subtitulo {
-      color: #fecb05; /* Amarillo llamativo */
+      color: #fecb05; 
       font-size: 1.15rem;
-      margin: 8px 0 15px 0;
+      margin: 6px 0 12px 0;
       font-weight: bold;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
     }
 
     .buttons-container {
@@ -152,7 +152,7 @@
       border: none;
       border-radius: 15px;
       cursor: pointer;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.6);
       transition: transform 0.2s ease, opacity 0.2s ease;
       text-decoration: none;
     }
@@ -179,7 +179,6 @@
 </head>
 <body>
 
-  <!-- PANTALLA RECIBIDORA PARA DESBLOQUEAR EL AUDIO -->
   <div class="audio-unlocker" id="bloqueo-audio" onclick="entrarInvitacion()">
     <button class="unlock-btn">🕷️</button>
     <div class="unlock-text">Tienes una invitación especial...<br>¡Toca para abrir!</div>
@@ -187,7 +186,7 @@
 
   <div class="sky-background"></div>
 
-  <!-- Letras flotantes sin tarjeta en la zona del cielo del póster -->
+  <!-- Letras acopladas abajo en la zona oscura del vehículo -->
   <div class="invitation-container" id="tarjeta-invitacion">
     <h1 class="titulo">¿Quieres ir al cine conmigo?</h1>
     <p class="subtitulo">¡Un gran poder conlleva una gran salida! 🕸️</p>
@@ -226,8 +225,9 @@
     }
 
     function moverBotonNo() {
+      // El botón evade saltando hacia arriba y hacia los lados para no chocar con los bordes de la pantalla
       const randomX = Math.floor(Math.random() * 100) + 40; 
-      const randomY = Math.floor(Math.random() * 80) + 20; /* Obliga a bajar para no salirse arriba */
+      const randomY = Math.floor(Math.random() * -80) - 20; 
       btnNo.style.transform = `translate(${randomX}px, ${randomY}px)`;
     }
 
