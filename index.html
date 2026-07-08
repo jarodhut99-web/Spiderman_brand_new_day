@@ -218,7 +218,6 @@ responsabilidad es ir a ver Spiderman al cine! </p>
  </div>
  </div>
  
- <!-- Se limpia el origen estático para el Cache Busting dinámico en JS -->
  <audio id="musica-spidey" loop preload="auto"></audio>
  
  <script>
@@ -230,7 +229,6 @@ responsabilidad es ir a ver Spiderman al cine! </p>
  
  function entrarInvitacion() {
  if (!musicaIniciada) {
- // Forzar al navegador a descargar el archivo limpio evitando la caché de GitHub
  musica.src = "Music1.mp3?v=" + new Date().getTime();
  musica.load();
  
@@ -258,6 +256,7 @@ responsabilidad es ir a ver Spiderman al cine! </p>
  });
  function abrirWhatsApp() {
  const numero = "50661547634";
+ // Mensaje actualizado con el emoji de corazón
  const mensaje = encodeURIComponent("¡Sí, si quiero ir contigo al cine a ver \nSpider-Man! ❤️");
  const deepLink = `whatsapp://send?phone=${numero}&text=${mensaje}`;
  const webLink = `https://whatsapp.com{numero}&text=${mensaje}`;
