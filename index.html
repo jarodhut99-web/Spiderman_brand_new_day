@@ -152,7 +152,13 @@
       margin: 10px 0 20px 0;
       letter-spacing: 0.5px;
       transform: rotate(-1deg);
-      text-shadow: 3px 3px 0px #000000;
+      /* Solo cambiamos esto: un contorno negro total para que resalte */
+      text-shadow: 
+        -2px -2px 0 #000,  
+         2px -2px 0 #000,
+        -2px  2px 0 #000,
+         2px  2px 0 #000,
+         3px  3px 0 #000;
     }
 
     .buttons-container {
