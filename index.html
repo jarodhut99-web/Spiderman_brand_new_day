@@ -141,7 +141,7 @@
       font-size: 2.8rem;
       letter-spacing: 1px;
       line-height: 1.1;
-      margin: 0 0 25px 0; /* Agregado espacio inferior para separar de los botones */
+      margin: 0 0 25px 0;
       text-shadow: 4px 4px 0px #000000;
     }
 
@@ -217,7 +217,6 @@
 
   <div class="invitation-container" id="tarjeta-invitacion">
     <h1 class="titulo">¿Quieres ir al cine conmigo?</h1>
-    <!-- El subtítulo amarillo fue removido de aquí para limpiar el diseño -->
     
     <div class="buttons-container">
       <button id="btn-si" onclick="abrirWhatsApp()">¡SÍ, CLARO!</button>
@@ -271,8 +270,8 @@
     function abrirWhatsApp() {
       const numero = "50661547634";
       
-      // MODIFICADO: Toda la frase larga corregida y formateada ahora forma parte del mensaje de WhatsApp
-      const textoMensaje = "¡Un gran poder conlleva una gran responsabilidad... y nuestra responsabilidad es ir a ver Spider-Man al cine! ¡SÍ, CLARO QUE QUIERO GO! 🫶🏼🕷️🕸️🎬";
+      // MODIFICADO: Estructura del mensaje unificada con el salto de línea (\n) y tu mensaje original intacto
+      const textoMensaje = "¡Un gran poder conlleva una gran responsabilidad... y nuestra responsabilidad es ir a ver Spiderman al cine! 🕸️\n\n¡Sí, si quiero ir contigo al cine a ver Spider-Man! 🫶🏼🕷️🕸️🎬";
       const mensaje = encodeURIComponent(textoMensaje);
       
       const deepLink = `whatsapp://send?phone=${numero}&text=${mensaje}`;
