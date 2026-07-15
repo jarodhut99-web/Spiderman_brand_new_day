@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> 🕸️</title>
+  <title>🕸️ Una Invitación Especial 🕸️</title>
 
   <!-- Etiquetas para evitar el almacenamiento en caché -->
- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
- <meta http-equiv="Pragma" content="no-cache">
- <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   
-  <!-- Fuentes de Cómic y Películas de Marvel -->
+  <!-- CORREGIDO: Enlaces oficiales de Google Fonts para que carguen las tipografías -->
   <link rel="preconnect" href="https://googleapis.com">
   <link rel="preconnect" href="https://gstatic.com" crossorigin>
   <link href="https://googleapis.com/css2?family=Bangers&family=Permanent+Marker&family=Quicksand:wght@700&display=swap" rel="stylesheet">
@@ -74,9 +74,9 @@
 
     /* 📦 Cuadro estilo viñeta de cómic para el GIF */
     .unlock-btn {
-      background: rgba(229, 27, 36, 0.1); /* Fondo rojizo suave translúcido */
-      border: 4px solid #ffffff; /* Borde del cuadro */
-      outline: 4px solid #000000; /* Contorno negro grueso tipo cómic */
+      background: rgba(229, 27, 36, 0.1); 
+      border: 4px solid #ffffff; 
+      outline: 4px solid #000000; 
       border-radius: 12px;
       padding: 15px;
       width: auto;
@@ -85,12 +85,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      transform: rotate(-2deg); /* Inclinación dinámica de viñeta */
-      box-shadow: 8px 8px 0px #000000; /* Sombra sólida de cómic */
+      transform: rotate(-2deg); 
+      box-shadow: 8px 8px 0px #000000; 
       animation: pulseSpidey 1.8s infinite ease-in-out;
     }
 
-    /* Tamaño controlado para el mini spiderman animado */
     .unlock-btn img {
       width: 130px;
       height: auto;
@@ -118,7 +117,7 @@
       position: relative;
       z-index: 10;
       text-align: center;
-      width: 90%;
+      width: 95%;
       max-width: 460px;
       display: flex;
       flex-direction: column;
@@ -154,12 +153,13 @@
       transform: rotate(-1deg);
     }
 
+    /* MEJORADO: Espacio controlado para evitar desbordamientos en móviles */
     .buttons-container {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 20px;
-      height: 80px;
+      height: 120px;
       position: relative;
       width: 100%;
     }
@@ -169,7 +169,7 @@
       font-size: 1.5rem;
       border: none;
       cursor: pointer;
-      transition: transform 0.1s ease, box-shadow 0.2s ease;
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
       text-decoration: none;
     }
 
@@ -177,7 +177,7 @@
       transform: scale(0.92); 
     }
 
-    /* 🔴 BOTÓN SÍ: Estilo Cómic Traje Avanzado */
+    /* 🔴 BOTÓN SÍ */
     #btn-si {
       font-family: 'Bangers', cursive;
       letter-spacing: 1px;
@@ -196,7 +196,7 @@
       box-shadow: 0 8px 0px #0c2373, 0 0 25px rgba(229, 27, 36, 0.8);
     }
 
-    /* 🕷️ BOTÓN NO: Estilo Callejero Miles Morales */
+    /* 🕷️ BOTÓN NO */
     #btn-no {
       font-family: 'Permanent Marker', cursive;
       background-color: #0c0d10; 
@@ -205,9 +205,6 @@
       border-radius: 4px;
       z-index: 20;
       position: relative;
-      transition: transform 0.15s ease-out;
-      outline: 40px solid transparent;
-      outline-offset: -40px;
       text-shadow: 2px 2px 0px #000000;
       box-shadow: 0 6px 15px rgba(229, 27, 36, 0.3);
     }
@@ -216,7 +213,6 @@
 <body>
 
   <div class="audio-unlocker" id="bloqueo-audio" onclick="entrarInvitacion()">
-    <!-- Botón enmarcado en viñeta de cómic -->
     <button class="unlock-btn">
       <img src="spiderman3.gif" alt="Spider-Man animado">
     </button>
@@ -244,17 +240,17 @@
     const tarjeta = document.getElementById('tarjeta-invitacion');
     const pantallaBloqueo = document.getElementById('bloqueo-audio');
     const musica = document.getElementById('musica-spidey');
-    const fuenteAudio = document.getElementById('fuente-audio');
     let musicaIniciada = false;
 
     function entrarInvitacion() {
       if (!musicaIniciada) {
-        fuenteAudio.src = "Music1.mp3?v=" + new Date().getTime();
+        // CORREGIDO: Forzar recarga directamente sobre el elemento de audio para iOS/Safari
+        musica.src = "Music1.mp3?v=" + new Date().getTime();
         musica.load();
         
         musica.play()
           .then(() => { musicaIniciada = true; })
-          .catch((e) => console.log("Audio blocked:", e));
+          .catch((e) => console.log("Audio bloqueado por el navegador:", e));
       }
 
       pantallaBloqueo.style.opacity = "0";
@@ -263,14 +259,15 @@
     }
 
     function moverBotonNo() {
-      const randomX = Math.floor(Math.random() * 100) + 40; 
-      const randomY = Math.floor(Math.random() * -80) - 20; 
-      btnNo.style.transform = `translate(${randomX}px, ${randomY}px)`;
+      // MEJORADO: Movimiento aleatorio inteligente que no rompe el contenedor del teléfono
+      const rangoX = Math.floor(Math.random() * 160) - 80;  // Entre -80px y 80px
+      const rangoY = Math.floor(Math.random() * 100) - 50;  // Entre -50px y 50px
+      btnNo.style.transform = `translate(${rangoX}px, ${rangoY}px)`;
     }
 
     btnNo.addEventListener('mouseenter', moverBotonNo);
     btnNo.addEventListener('touchstart', (e) => {
-      e.preventDefault();
+      e.preventDefault(); 
       moverBotonNo();
     });
 
@@ -283,7 +280,7 @@
       const mensaje = encodeURIComponent("¡Sí, si quiero ir contigo al cine a ver Spider-Man! 🫶🏼🕷️🕸️🎬");
       
       const deepLink = `whatsapp://send?phone=${numero}&text=${mensaje}`;
-      const webLink = `https://whatsapp.com{numero}&text=${mensaje}`;
+      const webLink = `https://wa.me{numero}?text=${mensaje}`;
       
       window.location.href = deepLink;
       
