@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🕸️ Una Invitación Especial 🕸️</title>
+  <title> 🕸️</title>
 
   <!-- Etiquetas para evitar el almacenamiento en caché -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   
-  <!-- CORREGIDO: Enlaces oficiales de Google Fonts para que carguen las tipografías -->
+  <!-- CORREGIDO: Enlaces oficiales de Google Fonts para activar Bangers y Permanent Marker -->
   <link rel="preconnect" href="https://googleapis.com">
   <link rel="preconnect" href="https://gstatic.com" crossorigin>
-  <link href="https://googleapis.com/css2?family=Bangers&family=Permanent+Marker&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+  <link href="https://googleapis.com/css2?family=Bangers&family=Permanent+Marker&family=Quicksand:wght=700&display=swap" rel="stylesheet">
 
   <style>
     * { box-sizing: border-box; }
@@ -51,8 +51,8 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 45%; 
-      background: linear-gradient(to top, rgba(10, 12, 16, 0.9) 0%, rgba(10, 12, 16, 0) 100%); 
+      height: 55%; 
+      background: linear-gradient(to top, rgba(10, 12, 16, 0.95) 0%, rgba(10, 12, 16, 0.7) 40%, rgba(10, 12, 16, 0) 100%); 
       z-index: 2;
     }
 
@@ -90,6 +90,7 @@
       animation: pulseSpidey 1.8s infinite ease-in-out;
     }
 
+    /* Tamaño controlado para el mini spiderman animado */
     .unlock-btn img {
       width: 130px;
       height: auto;
@@ -117,7 +118,7 @@
       position: relative;
       z-index: 10;
       text-align: center;
-      width: 95%;
+      width: 90%;
       max-width: 460px;
       display: flex;
       flex-direction: column;
@@ -126,7 +127,8 @@
       opacity: 0;
       transform: translateY(30px);
       transition: transform 0.6s ease-out, opacity 0.5s ease;
-      margin-bottom: 12vh; 
+      /* AJUSTADO: Se subió el contenedor (de 12vh a 22vh) para despejar las piernas de Spider-Man */
+      margin-bottom: 22vh; 
     }
 
     .invitation-container.show {
@@ -148,18 +150,19 @@
       font-family: 'Permanent Marker', cursive;
       color: #fecb05; 
       font-size: 1.25rem;
-      margin: 10px 0 20px 0;
+      margin: 15px 0 25px 0;
       letter-spacing: 0.5px;
       transform: rotate(-1deg);
+      line-height: 1.4;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); /* Añadido sombra para mayor legibilidad */
     }
 
-    /* MEJORADO: Espacio controlado para evitar desbordamientos en móviles */
     .buttons-container {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 20px;
-      height: 120px;
+      height: 80px;
       position: relative;
       width: 100%;
     }
@@ -169,7 +172,7 @@
       font-size: 1.5rem;
       border: none;
       cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.2s ease;
+      transition: transform 0.1s ease, box-shadow 0.2s ease;
       text-decoration: none;
     }
 
@@ -177,7 +180,7 @@
       transform: scale(0.92); 
     }
 
-    /* 🔴 BOTÓN SÍ */
+    /* 🔴 BOTÓN SÍ: Estilo Cómic Traje Avanzado */
     #btn-si {
       font-family: 'Bangers', cursive;
       letter-spacing: 1px;
@@ -196,7 +199,7 @@
       box-shadow: 0 8px 0px #0c2373, 0 0 25px rgba(229, 27, 36, 0.8);
     }
 
-    /* 🕷️ BOTÓN NO */
+    /* 🕷️ BOTÓN NO: Estilo Callejero Miles Morales */
     #btn-no {
       font-family: 'Permanent Marker', cursive;
       background-color: #0c0d10; 
@@ -205,6 +208,9 @@
       border-radius: 4px;
       z-index: 20;
       position: relative;
+      transition: transform 0.15s ease-out;
+      outline: 40px solid transparent;
+      outline-offset: -40px;
       text-shadow: 2px 2px 0px #000000;
       box-shadow: 0 6px 15px rgba(229, 27, 36, 0.3);
     }
@@ -213,6 +219,7 @@
 <body>
 
   <div class="audio-unlocker" id="bloqueo-audio" onclick="entrarInvitacion()">
+    <!-- Botón enmarcado en viñeta de cómic -->
     <button class="unlock-btn">
       <img src="spiderman3.gif" alt="Spider-Man animado">
     </button>
@@ -240,17 +247,18 @@
     const tarjeta = document.getElementById('tarjeta-invitacion');
     const pantallaBloqueo = document.getElementById('bloqueo-audio');
     const musica = document.getElementById('musica-spidey');
+    const fuenteAudio = document.getElementById('fuente-audio');
     let musicaIniciada = false;
 
     function entrarInvitacion() {
       if (!musicaIniciada) {
-        // CORREGIDO: Forzar recarga directamente sobre el elemento de audio para iOS/Safari
+        // Ajustado para compatibilidad estricta con Safari de iOS
         musica.src = "Music1.mp3?v=" + new Date().getTime();
         musica.load();
         
         musica.play()
           .then(() => { musicaIniciada = true; })
-          .catch((e) => console.log("Audio bloqueado por el navegador:", e));
+          .catch((e) => console.log("Audio blocked:", e));
       }
 
       pantallaBloqueo.style.opacity = "0";
@@ -259,15 +267,15 @@
     }
 
     function moverBotonNo() {
-      // MEJORADO: Movimiento aleatorio inteligente que no rompe el contenedor del teléfono
-      const rangoX = Math.floor(Math.random() * 160) - 80;  // Entre -80px y 80px
-      const rangoY = Math.floor(Math.random() * 100) - 50;  // Entre -50px y 50px
-      btnNo.style.transform = `translate(${rangoX}px, ${rangoY}px)`;
+      // Movimiento aleatorio controlado en todas las direcciones
+      const randomX = Math.floor(Math.random() * 160) - 80; 
+      const randomY = Math.floor(Math.random() * 100) - 50; 
+      btnNo.style.transform = `translate(${randomX}px, ${randomY}px)`;
     }
 
     btnNo.addEventListener('mouseenter', moverBotonNo);
     btnNo.addEventListener('touchstart', (e) => {
-      e.preventDefault(); 
+      e.preventDefault();
       moverBotonNo();
     });
 
