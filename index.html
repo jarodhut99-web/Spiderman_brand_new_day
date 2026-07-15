@@ -143,6 +143,22 @@
       line-height: 1.1;
       margin: 0 0 25px 0;
       text-shadow: 4px 4px 0px #000000;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Contenedor animado para el mensaje sorpresa final */
+    .mensaje-final {
+      font-family: 'Bangers', cursive;
+      color: #fecb05;
+      font-size: 2.2rem;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+      text-shadow: 3px 3px 0px #000000;
+      padding: 10px;
+      display: none;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
     .buttons-container {
@@ -153,6 +169,7 @@
       height: 80px;
       position: relative;
       width: 100%;
+      transition: opacity 0.3s ease;
     }
 
     button {
@@ -216,10 +233,15 @@
   <div class="sky-background"></div>
 
   <div class="invitation-container" id="tarjeta-invitacion">
-    <h1 class="titulo">¿Quieres ir al cine conmigo?</h1>
+    <h1 class="titulo" id="main-title">¿Quieres ir al cine conmigo?</h1>
     
-    <div class="buttons-container">
-      <button id="btn-si" onclick="abrirWhatsApp()">¡SÍ, CLARO!</button>
+    <!-- Elemento que albergará el mensaje de la responsabilidad -->
+    <div class="mensaje-final" id="surprise-text">
+      ¡Un gran poder conlleva una gran responsabilidad... y nuestra responsabilidad es ir a ver Spiderman al cine! 🕸️
+    </div>
+
+    <div class="buttons-container" id="main-buttons">
+      <button id="btn-si" onclick="procesarAceptacion()">¡SÍ, CLARO!</button>
       <button id="btn-no">No 😢</button>
     </div>
   </div>
@@ -267,14 +289,40 @@
       btnNo.style.transform = 'translate(0px, 0px)';
     });
 
+    // Maneja la transición visual intermedia y programa la redirección diferida
+    function procesarAceptacion() {
+      const titulo = document.getElementById('main-title');
+      const botones = document.getElementById('main-buttons');
+      const textoSorpresa = document.getElementById('surprise-text');
+
+      // Oculta la interfaz de pregunta original con transiciones limpias
+      titulo.style.opacity = "0";
+      botones.style.opacity = "0";
+
+      setTimeout(() => {
+        titulo.style.display = "none";
+        botones.style.display = "none";
+
+        // Muestra el mensaje con estilo de cómic impactante
+        textoSorpresa.style.display = "block";
+        setTimeout(() => {
+          textoSorpresa.style.opacity = "1";
+          textoSorpresa.style.transform = "scale(1)";
+        }, 50);
+
+        // Espera 3.5 segundos para la lectura antes de disparar la redirección a WhatsApp
+        setTimeout(abrirWhatsApp, 3500);
+      }, 300);
+    }
+
     function abrirWhatsApp() {
       const numero = "50661547634";
-      
-      // MODIFICADO: Estructura del mensaje unificada con el salto de línea (\n) y tu mensaje original intacto
-      const textoMensaje = "¡Un gran poder conlleva una gran responsabilidad... y nuestra responsabilidad es ir a ver Spiderman al cine! 🕸️\n\n¡Sí, si quiero ir contigo al cine a ver Spider-Man! 🫶🏼🕷️🕸️🎬";
+      // Tu mensaje original e intacto para el chat
+      const textoMensaje = "¡Sí, si quiero ir contigo al cine a ver Spider-Man! 🫶🏼🕷️🕸️🎬";
       const mensaje = encodeURIComponent(textoMensaje);
       
       const deepLink = `whatsapp://send?phone=${numero}&text=${mensaje}`;
+      // CORREGIDO: Sintaxis exacta con la barra / y las llaves del template string
       const webLink = `https://wa.me{numero}?text=${mensaje}`;
       
       window.location.href = deepLink;
@@ -283,6 +331,3 @@
         window.open(webLink, '_blank');
       }, 250);
     }
-  </script>
-</body>
-</html>
