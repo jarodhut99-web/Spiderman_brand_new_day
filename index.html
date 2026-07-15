@@ -10,7 +10,7 @@
  <meta http-equiv="Pragma" content="no-cache">
  <meta http-equiv="Expires" content="0">
   
-  <!-- CORREGIDO: Único cambio aplicado en las URLs oficiales de Google Fonts -->
+  <!-- CORREGIDO: URLs oficiales de Google Fonts para activar Bangers y Permanent Marker -->
   <link rel="preconnect" href="https://googleapis.com">
   <link rel="preconnect" href="https://gstatic.com" crossorigin>
   <link href="https://googleapis.com/css2?family=Bangers&family=Permanent+Marker&family=Quicksand:wght=700&display=swap" rel="stylesheet">
@@ -74,9 +74,9 @@
 
     /* 📦 Cuadro estilo viñeta de cómic para el GIF */
     .unlock-btn {
-      background: rgba(229, 27, 36, 0.1); /* Fondo rojizo suave translúcido */
-      border: 4px solid #ffffff; /* Borde del cuadro */
-      outline: 4px solid #000000; /* Contorno negro grueso tipo cómic */
+      background: rgba(229, 27, 36, 0.1); 
+      border: 4px solid #ffffff; 
+      outline: 4px solid #000000; 
       border-radius: 12px;
       padding: 15px;
       width: auto;
@@ -85,8 +85,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      transform: rotate(-2deg); /* Inclinación dinámica de viñeta */
-      box-shadow: 8px 8px 0px #000000; /* Sombra sólida de cómic */
+      transform: rotate(-2deg); 
+      box-shadow: 8px 8px 0px #000000; 
       animation: pulseSpidey 1.8s infinite ease-in-out;
     }
 
@@ -262,9 +262,10 @@
       tarjeta.classList.add("show");
     }
 
+    // MEJORADO: Movimiento inteligente multidireccional que evita salirse del teléfono
     function moverBotonNo() {
-      const randomX = Math.floor(Math.random() * 100) + 40; 
-      const randomY = Math.floor(Math.random() * -80) - 20; 
+      const randomX = Math.floor(Math.random() * 200) - 100; // Entre -100px y 100px
+      const randomY = Math.floor(Math.random() * 160) - 100; // Entre -100px y 60px
       btnNo.style.transform = `translate(${randomX}px, ${randomY}px)`;
     }
 
