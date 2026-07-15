@@ -10,10 +10,10 @@
  <meta http-equiv="Pragma" content="no-cache">
  <meta http-equiv="Expires" content="0">
   
-  <!-- CORREGIDO: URLs oficiales de Google Fonts para activar Bangers y Permanent Marker -->
+  <!-- Fuentes de Cómic y Películas de Marvel -->
   <link rel="preconnect" href="https://googleapis.com">
   <link rel="preconnect" href="https://gstatic.com" crossorigin>
-  <link href="https://googleapis.com/css2?family=Bangers&family=Permanent+Marker&family=Quicksand:wght=700&display=swap" rel="stylesheet">
+  <link href="https://googleapis.com/css2?family=Bangers&family=Permanent+Marker&family=Quicksand:wght@700&display=swap" rel="stylesheet">
 
   <style>
     * { box-sizing: border-box; }
@@ -142,16 +142,20 @@
       letter-spacing: 1px;
       line-height: 1.1;
       margin: 0;
-      text-shadow: 4px 4px 0px #000000, 0 0 15px rgba(229, 27, 36, 0.6);
+      /* MEJORADO: Sombra sólida negra limpia sin el resplandor difuminado rojo molesto */
+      text-shadow: 4px 4px 0px #000000;
     }
 
     .subtitulo {
-      font-family: 'Permanent Marker', cursive;
+      /* MEJORADO: Fuente limpia Quicksand en lugar de Permanent Marker para lectura descansada */
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
       color: #fecb05; 
-      font-size: 1.25rem;
-      margin: 10px 0 20px 0;
-      letter-spacing: 0.5px;
-      transform: rotate(-1deg);
+      font-size: 1.1rem;
+      margin: 15px 0 25px 0;
+      letter-spacing: 0.3px;
+      line-height: 1.4;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); /* Sombra oscura de fondo para resaltar sobre la imagen */
     }
 
     .buttons-container {
@@ -216,7 +220,6 @@
 <body>
 
   <div class="audio-unlocker" id="bloqueo-audio" onclick="entrarInvitacion()">
-    <!-- Botón enmarcado en viñeta de cómic -->
     <button class="unlock-btn">
       <img src="spiderman3.gif" alt="Spider-Man animado">
     </button>
@@ -262,10 +265,9 @@
       tarjeta.classList.add("show");
     }
 
-    // MEJORADO: Movimiento inteligente multidireccional que evita salirse del teléfono
     function moverBotonNo() {
-      const randomX = Math.floor(Math.random() * 200) - 100; // Entre -100px y 100px
-      const randomY = Math.floor(Math.random() * 160) - 100; // Entre -100px y 60px
+      const randomX = Math.floor(Math.random() * 200) - 100; 
+      const randomY = Math.floor(Math.random() * 160) - 100; 
       btnNo.style.transform = `translate(${randomX}px, ${randomY}px)`;
     }
 
