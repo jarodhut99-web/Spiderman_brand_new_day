@@ -324,17 +324,22 @@
 
     function abrirWhatsApp() {
       const numero = "50661547634";
-      const textoMensaje = "¡Un gran poder conlleva una gran responsabilidad... y nuestra responsabilidad es ir a ver Spiderman al cine! 🕸️\n\n¡Sí, si quiero ir contigo al cine a ver Spider-Man! 🫶🏼🕷️🕸️🎬";
       
-      // Muestra el mensaje en la pantalla del sitio web primero
+      // Texto que solo aparecerá en la pantalla del cuadro blanco
+      const textoPantallaCuadro = "¡Un gran poder conlleva una gran responsabilidad... y nuestra responsabilidad es ir a ver Spiderman al cine! 🕸️";
+      
+      // Texto que solo aparecerá en la aplicación de WhatsApp
+      const textoMensajeWhatsApp = "¡Sí, si quiero ir contigo al cine a ver Spider-Man! 🫶🏼🕷️🕸️🎬";
+      
+      // Muestra el mensaje corto en la pantalla del sitio web primero
       const modal = document.getElementById('modal-mensaje');
       const textoPantalla = document.getElementById('texto-pantalla');
-      textoPantalla.textContent = textoMensaje;
+      textoPantalla.textContent = textoPantallaCuadro;
       modal.classList.add('show');
 
       // Espera 3.5 segundos (3500ms) antes de ejecutar el envío a WhatsApp
       setTimeout(() => {
-        const mensaje = encodeURIComponent(textoMensaje);
+        const mensaje = encodeURIComponent(textoMensajeWhatsApp);
         const deepLink = `whatsapp://send?phone=${numero}&text=${mensaje}`;
         const webLink = `https://wa.me{numero}?text=${mensaje}`;
         
@@ -347,4 +352,3 @@
     }
   </script>
 </body>
-</html>
