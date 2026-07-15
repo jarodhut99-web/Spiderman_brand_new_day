@@ -113,7 +113,7 @@
       100% { transform: scale(1) rotate(-2deg); filter: drop-shadow(0 0 0px rgba(229, 27, 36, 0)); }
     }
 
-    /* --- CONTENEDOR INVISIBLE ELEVADO (Subido del 8% al 18% para mejor centrado) --- */
+    /* --- CONTENEDOR INVISIBLE ELEVADO CON ANCHO SEGURO --- */
     .invitation-container {
       position: absolute;
       bottom: 18%;
@@ -121,7 +121,7 @@
       transform: translate(-50%, 30px);
       z-index: 10;
       text-align: center;
-      width: 90%;
+      width: 92%; /* Ajustado para dar más margen en los bordes del móvil */
       max-width: 460px;
       display: flex;
       flex-direction: column;
@@ -251,6 +251,28 @@
       line-height: 1.5;
       white-space: pre-line;
     }
+
+    /* 📱 ADAPTACIÓN DE TAMAÑOS PARA PANTALLAS PEQUEÑAS DE CELULAR */
+    @media (max-width: 480px) {
+      .titulo {
+        font-size: 2.3rem; /* Letra un poco más pequeña para evitar recortes */
+        margin-bottom: 20px;
+      }
+      button {
+        padding: 12px 24px; /* Botones más estilizados para la pantalla pequeña */
+        font-size: 1.3rem;
+      }
+      .unlock-text {
+        font-size: 1.6rem;
+        padding: 0 15px;
+      }
+      .mensaje-contenido {
+        padding: 20px;
+      }
+      .mensaje-texto {
+        font-size: 1.15rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -349,7 +371,7 @@
         setTimeout(() => {
           window.open(webLink, '_blank');
         }, 250);
-      }, 4500); 
+      }, 5000); 
     }
   </script>
 </body>
