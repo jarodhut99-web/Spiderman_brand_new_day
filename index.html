@@ -13,7 +13,7 @@
   <!-- Fuentes de Cómic y Películas de Marvel -->
   <link rel="preconnect" href="https://googleapis.com">
   <link rel="preconnect" href="https://gstatic.com" crossorigin>
-  <link href="https://googleapis.com/css2?family=Bangers&family=Permanent+Marker&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+  <link href="https://googleapis.com/css2?family=Bangers&family=Permanent+Marker&family=Quicksand:wght=700&display=swap" rel="stylesheet">
 
   <style>
     * { box-sizing: border-box; }
@@ -141,21 +141,8 @@
       font-size: 2.8rem;
       letter-spacing: 1px;
       line-height: 1.1;
-      margin: 0;
-      /* MEJORADO: Sombra sólida negra limpia sin el resplandor difuminado rojo molesto */
+      margin: 0 0 25px 0; /* Agregado espacio inferior para separar de los botones */
       text-shadow: 4px 4px 0px #000000;
-    }
-
-    .subtitulo {
-      /* MEJORADO: Fuente limpia Quicksand en lugar de Permanent Marker para lectura descansada */
-      font-family: 'Quicksand', sans-serif;
-      font-weight: 700;
-      color: #fecb05; 
-      font-size: 1.1rem;
-      margin: 15px 0 25px 0;
-      letter-spacing: 0.3px;
-      line-height: 1.4;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); /* Sombra oscura de fondo para resaltar sobre la imagen */
     }
 
     .buttons-container {
@@ -230,7 +217,7 @@
 
   <div class="invitation-container" id="tarjeta-invitacion">
     <h1 class="titulo">¿Quieres ir al cine conmigo?</h1>
-    <p class="subtitulo">¡Un gran poder conlleva una gran responsabilidad... y nuestra responsabilidad es ir a ver Spiderman al cine! 🕸️</p>
+    <!-- El subtítulo amarillo fue removido de aquí para limpiar el diseño -->
     
     <div class="buttons-container">
       <button id="btn-si" onclick="abrirWhatsApp()">¡SÍ, CLARO!</button>
@@ -283,7 +270,10 @@
 
     function abrirWhatsApp() {
       const numero = "50661547634";
-      const mensaje = encodeURIComponent("¡Sí, si quiero ir contigo al cine a ver Spider-Man! 🫶🏼🕷️🕸️🎬");
+      
+      // MODIFICADO: Toda la frase larga corregida y formateada ahora forma parte del mensaje de WhatsApp
+      const textoMensaje = "¡Un gran poder conlleva una gran responsabilidad... y nuestra responsabilidad es ir a ver Spider-Man al cine! ¡SÍ, CLARO QUE QUIERO GO! 🫶🏼🕷️🕸️🎬";
+      const mensaje = encodeURIComponent(textoMensaje);
       
       const deepLink = `whatsapp://send?phone=${numero}&text=${mensaje}`;
       const webLink = `https://wa.me{numero}?text=${mensaje}`;
